@@ -11,6 +11,8 @@ import java.util.Map;
 
 @Component
 public class CheckingAccountAgreement {
+    // A temporal collection can be implemented to post entries based on past effectiveAt instant, which help manage
+    // evolution of posting rules.
     private final Map<TransactionType, PostingRule> postingRulesMap =  new HashMap<>();
 
     public CheckingAccountAgreement(

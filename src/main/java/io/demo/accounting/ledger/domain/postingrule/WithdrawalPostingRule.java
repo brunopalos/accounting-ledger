@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class WithdrawalPostingRule implements PostingRule {
     public AccountingEntry process(AccountingOperation operation) {
+        // Using signals to credit or debit from accounts
         final var withdrawalAmount = operation.amount().negate();
         return new AccountingEntry(operation.accountId(),
                 null,

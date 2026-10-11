@@ -27,7 +27,16 @@ public class AccountSummaryService {
         return transactionRepository.findEntriesByAccountId(accountingId);
     }
 
-   synchronized public AccountSummary getSummary(Long accountId) {
+    /**
+     * Get the account summary, containing balance and accounting entries.
+     * <p>
+     * This operation needs to be atomic to avoid having inconsistent balance and entries (balance is the sum of all
+     * entries), which explains the synchronized.
+     *
+     * @param accountId the account ID to get the summary
+     * @return the AccountSummary
+     */
+    synchronized public AccountSummary getSummary(Long accountId) {
        final var balance = getBalance(accountId);
        final var entries =  getEntries(accountId);
        return new AccountSummary(balance, entries);

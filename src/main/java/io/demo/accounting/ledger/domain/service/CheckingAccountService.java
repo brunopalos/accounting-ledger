@@ -29,12 +29,32 @@ public class CheckingAccountService {
         this.accountRepository = accountRepository;
     }
 
+    /**
+     * Deposits money on the checking account.
+     * <p>
+     * This operation needs to be atomic because the transaction is created along with the account balance update, which
+     * explains the synchronized.
+     *
+     * @param accountId the account ID to deposit the money
+     * @param amount the amount to deposit
+     * @return the transaction ID of the created deposit transaction
+     */
     synchronized public Long deposit(Long accountId, BigDecimal amount) {
         final var effectiveAt =  Instant.now();
         final var operation = new AccountingOperation(accountId, TransactionType.DEPOSIT, amount, effectiveAt);
         return createTransaction(operation);
     }
 
+    /**
+     * Withdraws money from the checking account.
+     * <p>
+     * This operation needs to be atomic because the account balance is checked to verify if the operation can proceed,
+     * and transaction is created along with the account balance update, which explains the synchronized.
+     *
+     * @param accountId the account ID to deposit the money
+     * @param amount the amount to deposit
+     * @return the transaction ID of the created deposit transaction
+     */
     synchronized public Long withdrawal(Long accountId, BigDecimal amount) {
         final var effectiveAt =  Instant.now();
         final var currentBalance = accountRepository.getBalance(accountId);
