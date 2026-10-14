@@ -30,8 +30,8 @@ public class AccountSummaryService {
     /**
      * Get the account summary, containing balance and accounting entries.
      * <p>
-     * This operation needs to be atomic to avoid having inconsistent balance and entries (balance is the sum of all
-     * entries), which explains the synchronized.
+     * This operation needs to be protected from race conditions to avoid having inconsistent balance and entries
+     * (balance is the sum of all entries), which explains the synchronized.
      *
      * @param accountId the account ID to get the summary
      * @return the AccountSummary

@@ -32,8 +32,8 @@ public class CheckingAccountService {
     /**
      * Deposits money on the checking account.
      * <p>
-     * This operation needs to be atomic because the transaction is created along with the account balance update, which
-     * explains the synchronized.
+     * This operation needs to be protected from race conditions because the transaction is created along with the
+     * ccount balance update, which explains the synchronized.
      *
      * @param accountId the account ID to deposit the money
      * @param amount the amount to deposit
@@ -48,8 +48,9 @@ public class CheckingAccountService {
     /**
      * Withdraws money from the checking account.
      * <p>
-     * This operation needs to be atomic because the account balance is checked to verify if the operation can proceed,
-     * and transaction is created along with the account balance update, which explains the synchronized.
+     * This operation needs to be protected from race conditions because the account balance is checked to verify if the
+     * operation can proceed, and transaction is created along with the account balance update, which explains the
+     * synchronized.
      *
      * @param accountId the account ID to deposit the money
      * @param amount the amount to deposit
