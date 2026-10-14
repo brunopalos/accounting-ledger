@@ -2,14 +2,14 @@
 
 ## Description
 
-This is a demo implementation of a single-entry accounting ledger. It currently supports the followint operations:
+This is a demo implementation of a single-entry accounting ledger. It currently supports the following operations:
 
-- deposit to a checking account
-- withdrawal from a checking account
-- get account balance
-- get account summary
+- Deposit to a checking account
+- withdraw from a checking account
+- Get account balance
+- Get account entries
 
-It follows simplified versions of the Service Agreement and Posting Rules from Martin Fowler's accounting patterns. This implementation doesn't support Accounting Events and only used a simple static Service Agreement for the checking account, for demonstration purposes. However, it is possible to extend the implementation with more sophisticated Service Agreements and be extended with Accounting Events. It is also possible to extend it to become a double-entry or multi-leg ledger by changing the Posting Rules accordingly.
+It follows simplified versions of the Service Agreement and Posting Rules from [Martin Fowler's accounting patterns](https://martinfowler.com/apsupp/accounting.pdf). This implementation doesn't support Accounting Events and only set a simple static Service Agreement for the checking account, for demonstration purposes.
 
 ## How to build it
 
@@ -95,4 +95,4 @@ Get account summary from account ID 1:
 
 - Null safety and input validation.
 - Split unit tests and integration tests.
-- 
+- Support OpenAPI.
